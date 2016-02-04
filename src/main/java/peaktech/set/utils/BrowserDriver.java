@@ -10,10 +10,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 public class BrowserDriver {
-    private static final Logger LOGGER = Logger.getLogger(BrowserDriver.class.getName());
     private static WebDriver mDriver;
 
     public synchronized static WebDriver getCurrentDriver() {
@@ -21,8 +19,10 @@ public class BrowserDriver {
             try {
                 mDriver = BrowserFactory.getBrowser();
             } catch (UnreachableBrowserException e) {
+                System.err.println("UnreachableBrowserException: " + e.getMessage());
                 mDriver = BrowserFactory.getBrowser();
             } catch (WebDriverException e) {
+                System.err.println("WebDriverException: " + e.getMessage());
                 mDriver = BrowserFactory.getBrowser();
             } finally {
                 Runtime.getRuntime().addShutdownHook(new Thread(new BrowserCleanup()));
@@ -35,9 +35,8 @@ public class BrowserDriver {
         try {
             getCurrentDriver().quit();
             mDriver = null;
-            LOGGER.info("closing the browser");
         } catch (UnreachableBrowserException e) {
-            LOGGER.info("cannot close browser: unreachable browser");
+            System.err.println("UnreachableBrowserException: " + e.getMessage());
         }
     }
 
@@ -49,8 +48,6 @@ public class BrowserDriver {
 
     public static void loadPage(String url) {
         getCurrentDriver();
-        LOGGER.info("Directing browser to:" + url);
-        LOGGER.info("try to loadPage [" + url + "]");
         getCurrentDriver().get(url);
     }
 
