@@ -24,7 +24,7 @@ public class Navigation {
                 user = Users.createInvalidUser();
                 break;
         }
-        LoginView.login(user.getUsername(), user.getPassword());
+        LoginView.login(user.getEmail(), user.getPassword());
     }
 
     public void then_I_login(String outcomeString) {

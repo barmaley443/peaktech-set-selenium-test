@@ -7,6 +7,7 @@ import org.openqa.selenium.support.How;
 import peaktech.set.utils.BrowserDriver;
 
 public class LoginPageContainer {
+    //TODO: модифицировать элементы на страницах в админ панели, добавить уникальные классы
     private String validationContainerCSS = "div.ng-active";
 
     @FindBy(how = How.CLASS_NAME, using = "md-display-1")

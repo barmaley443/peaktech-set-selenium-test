@@ -1,15 +1,14 @@
 package peaktech.set;
 
 public class Users {
+
     public static User createValidUser() {
-        User user = new User();
-        user.withUserName("dan@sfdev.com").withPassword("qwerty");
+        User user = new User("dan@sfdev.com", "qwerty");
         return user;
     }
 
     public static User createInvalidUser() {
-        User user = new User();
-        user.withUserName("test").withPassword("test");
+        User user = new User("test", "test");
         return user;
     }
 }
